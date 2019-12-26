@@ -63,9 +63,10 @@ class XArm7Sim(object):
     orn = [1,0,0,0]
     
     if useNullSpace:
+        restPoses = [0]*xarmNumDofs
         jointPoses = self.bullet_client.calculateInverseKinematics(self.xarm,xarmEndEffectorIndex, pos, orn,lowerLimits=ll, 
-          upperLimits=ul,jointRanges=jr, restPoses=np.array(self.jointPoses).tolist(),residualThreshold=1e-5, maxNumIterations=ikMaxNumIterations)
-        self.jointPoses = jointPoses#[0,0,jointPoses[2],jointPoses[3],jointPoses[4],jointPoses[5]]
+          upperLimits=ul,jointRanges=jr, restPoses=np.array(restPoses).tolist(),residualThreshold=1e-5, maxNumIterations=ikMaxNumIterations)
+        self.jointPoses = jointPoses
     else:
         self.jointPoses = self.bullet_client.calculateInverseKinematics(self.xarm,xarmEndEffectorIndex, pos, orn, maxNumIterations=ikMaxNumIterations)
     if useDynamics:

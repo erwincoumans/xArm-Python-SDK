@@ -5,7 +5,7 @@ import time
 import numpy as np
 import xarm_sim
 
-options = ""#make video using options="--mp4=\"video.mp4\""
+options = ""#"--mp4=\"video.mp4\""
 
 p.connect(p.GUI, options=options)
 p.setAdditionalSearchPath(pd.getDataPath())
